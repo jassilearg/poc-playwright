@@ -11,6 +11,7 @@ export class HomePage {
     await this.page.click('#add-to-cart');
     await expect(this.page.locator('#remove')).toBeVisible();
     await expect(this.page.locator('#shopping_cart_container > a > span')).toHaveText('1');
+    await this.page.click('#shopping_cart_container');
   }
 
   async logout() {
