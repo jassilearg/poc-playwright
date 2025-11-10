@@ -2,6 +2,9 @@ import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
 import { YourCart } from '../pages/YourCartPage';
+import { CheckoutYourInformationPage } from '../pages/CheckoutYourInformationPage';
+import { CheckoutOverviewPage } from '../pages/CheckoutOverviewPage';
+import { CheckoutCompletePage } from '../pages/CheckoutCompletePage';
 
 const URL = 'https://www.saucedemo.com/';
 const NOME_USUARIO = process.env.USUARIO;
@@ -11,11 +14,17 @@ test.describe('carrinho de compras', () => {
   let loginPage;
   let homePage;
   let yourCart;
+  let checkoutYourInformationPage;
+  let checkoutOverviewPage;
+  let checkoutCompletePage;
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     homePage = new HomePage(page);
     yourCart = new YourCart(page);
+    checkoutYourInformationPage = new CheckoutYourInformationPage(page);
+    checkoutOverviewPage = new CheckoutOverviewPage(page);
+    checkoutCompletePage = new CheckoutCompletePage(page);
 
     await loginPage.goto(URL);
     await loginPage.login(NOME_USUARIO, SENHA);
@@ -24,6 +33,9 @@ test.describe('carrinho de compras', () => {
   test('deve efetuar uma compra com sucesso', async () => {
     await homePage.adicionarAoCarrinho();
     await yourCart.validarItemCarrinho();
+    await checkoutYourInformationPage.preencherInformacoesPessoais('Otto', 'Mação', '12345678');
+    await checkoutOverviewPage.validarResumoPedido();
+    await checkoutCompletePage.validarSucessoPedido();
   });
 
   test.afterEach(async () => {
