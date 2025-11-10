@@ -5,7 +5,7 @@ import { YourCart } from '../pages/YourCartPage';
 import { CheckoutYourInformationPage } from '../pages/CheckoutYourInformationPage';
 import { CheckoutOverviewPage } from '../pages/CheckoutOverviewPage';
 import { CheckoutCompletePage } from '../pages/CheckoutCompletePage';
-import { userData } from '../fixtures/userData.js'; // ← Corrigido o caminho
+import { userData } from '../fixtures/userData.js';
 
 const NOME_USUARIO = process.env.USUARIO;
 const SENHA = process.env.SENHA;

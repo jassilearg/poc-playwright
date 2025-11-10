@@ -37,7 +37,7 @@ project-root/
 - Node.js >= 18  
 - npm ou yarn  
 - Playwright (instalado via `npm install`)
-
+- Navegadores (Chrome, Firefox, Safari)
 ---
 
 ## Configuração
@@ -45,6 +45,11 @@ project-root/
 ### Instalar dependências:
 ```bash
 npm install
+```
+
+### Instalar navegadores:
+```bash
+npx playwright install
 ```
 
 ### Criar arquivo de variáveis de ambiente:
