@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
-
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 export default defineConfig({
@@ -10,27 +10,28 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }]],
+
   use: {
+    baseURL: process.env.BASE_URL,
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    headless: true,
   },
 
   projects: [
     {
-      name: 'chromium',
+      name: 'Chrome',
       use: { ...devices['Desktop Chrome'] },
     },
-
     {
-      name: 'firefox',
+      name: 'Firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
     {
-      name: 'webkit',
+      name: 'Safari',
       use: { ...devices['Desktop Safari'] },
     },
   ],
-
 });
-
