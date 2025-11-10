@@ -1,6 +1,10 @@
 export class LoginPage {
   constructor(page) {
     this.page = page;
+
+    this.usernameInput = page.locator('#user-name');
+    this.passwordInput = page.locator('#password');
+    this.loginButton = page.locator('#login-button');
   }
 
   async goto(url) {
@@ -8,8 +12,8 @@ export class LoginPage {
   }
 
   async login(usuario, senha) {
-    await this.page.fill('#user-name', usuario);
-    await this.page.fill('#password', senha);
-    await this.page.click('#login-button');
+    await this.usernameInput.fill(usuario);
+    await this.passwordInput.fill(senha);
+    await this.loginButton.click();
   }
 }
