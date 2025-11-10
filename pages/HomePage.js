@@ -24,7 +24,9 @@ export class HomePage {
   }
 
   async logout() {
+    await expect(this.menuButton).toBeVisible();
     await this.menuButton.click();
+    await expect(this.logoutButton).toBeVisible();
     await this.logoutButton.click();
   }
 }
